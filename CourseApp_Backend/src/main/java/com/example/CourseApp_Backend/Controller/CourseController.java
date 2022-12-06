@@ -22,13 +22,13 @@ public class CourseController {
     }
     @CrossOrigin(origins = "*")
     @GetMapping("/view")
-        public List<Courses> viewpage(){
+        public List<Courses> viewCourse(){
         return(List<Courses>)dao.findAll() ;
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
-    public String AddCourse(@RequestBody Courses c){
+    public String addCourse(@RequestBody Courses c){
         System.out.println(c.getTitle().toString());
         System.out.println(c.getDescription().toString());
         System.out.println(c.getDuration().toString());
