@@ -11,5 +11,10 @@ public class CourseController {
         return "Welcome to course add page";
     }
 
+    @GetMapping("/")
+    public String Viewpage(){
+        return "Welcome to course view page";
+    }
+
 
 }
