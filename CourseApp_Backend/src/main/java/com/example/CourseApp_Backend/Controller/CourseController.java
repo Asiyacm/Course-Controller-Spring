@@ -12,8 +12,16 @@ public class CourseController {
 
     @Autowired
     private CoursesDao dao;
-    @CrossOrigin(origins = "*")
+
     @GetMapping("/")
+
+    public String Homepage(){
+
+        return("Welcome to home page");
+
+    }
+    @CrossOrigin(origins = "*")
+    @GetMapping("/view")
         public List<Courses> viewpage(){
         return(List<Courses>)dao.findAll() ;
     }
