@@ -19,7 +19,7 @@ public class CourseController {
 
     public String Homepage(){
 
-        return("Welcome to home page");
+        return "Welcome to home page";
 
     }
     @CrossOrigin(origins = "*")
@@ -27,7 +27,13 @@ public class CourseController {
         public List<Courses> viewCourse(){
         return(List<Courses>)dao.findAll() ;
     }
-
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/search",consumes = "application/json",produces = "application/json")
+    public List<Courses> searchCourse(@RequestBody Courses c) {
+        String title = String.valueOf(c.getTitle());
+        System.out.println(title);
+        return (List<Courses>)dao.Search(c.getTitle());
+    }
     @CrossOrigin(origins = "*")
     @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
     public Map<String,String> addCourse(@RequestBody Courses c) {
