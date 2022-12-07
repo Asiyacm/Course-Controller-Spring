@@ -5,14 +5,16 @@ import com.example.CourseApp_Backend.dao.CoursesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CourseController {
 
     @Autowired
     private CoursesDao dao;
-
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
 
     public String Homepage(){
@@ -28,14 +30,16 @@ public class CourseController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
-    public String addCourse(@RequestBody Courses c){
+    public Map<String,String> addCourse(@RequestBody Courses c) {
         System.out.println(c.getTitle().toString());
         System.out.println(c.getDescription().toString());
         System.out.println(c.getDuration().toString());
         System.out.println(c.getVenue().toString());
         System.out.println(c.getDate().toString());
         dao.save(c);
-        return "Course Added Successfully";
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status", "success");
+        return map;
     }
 
 }
